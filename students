@@ -1,0 +1,61 @@
+package week9;
+
+import java.util.Scanner;
+
+public class students
+{
+	String name;
+	float[] CIE= {0,0,0};
+	float avg;
+	byte RollNo;
+	void setstudent(String n, float ia[],byte rno)
+	{
+		name=n;
+		avg=0.0f;
+		RollNo=rno;
+		for(byte i=0;i<3;i++)
+		CIE[i]=ia[i];
+		this.calculateAverage();
+	}
+	void calculateAverage()
+	{
+		float sum=0.0f;
+		for(byte i=0;i<3;i++)
+			sum=sum+CIE[i];
+		avg=sum/3.0f;
+	}
+		void showstudent()
+		{
+			System.out.println(RollNo+"\t\t"+name+"\t\t"+avg+"\t");
+		}
+}
+class Grade extends student
+{
+	final byte grace=10;float attendence;
+	Scanner inscanner=new Scanner(System.in);
+	void setstudent(String n,float ia[],byte rno)
+	{
+		System.out.println("enter the attendence of student...");
+		attendence=inscanner.nextFloat();
+		if (attendence>=75.0f)
+		{
+			ia[2]=grace;
+			super.setstudent(n, ia, rno);
+		}
+		else
+			super.setstudent(n, ia, rno);
+		
+	}
+}
+ class demoMethodoverriding
+{
+	 public static void main(String args[])
+	 {
+		 Grade deeps=new Grade();
+		 float[]CIE= {18.4f,23.7f,0};
+		 deeps.setstudent("deepika",CIE,(byte)15);
+		 System.out.println("the internal details of a student");
+		 System.out.println("RollNo\tname\t\taverage");
+		 deeps.showstudent();
+	}
+}
